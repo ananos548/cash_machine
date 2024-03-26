@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кассовый чек</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .total {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+
+
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Кассовый чек</h1>
+
+    <h2>Товары:</h2>
+    <ul>
+
+        {% for item in items %}
+        {% for k, v in quantity.items %}
+        {% if item.id == k%}
+        <li>{{ item.title }} - {%for k, v in item_price.items %} {% if item.id == k %}{{ v }} руб.{% endif %} {% endfor %}({{ v }} шт.)</li>
+        {% endif %}
+        {% endfor %}
+
+
+        {% endfor %}
+    </ul>
+
+    <p class="total">Общее количество товаров: {{ total_items }}</p>
+    <p class="total">Итого: {{ total_price }} руб.</p>
+    <p class="total">Время создания: {{ current_time }}</p>
+</div>
+</body>
+</html>
